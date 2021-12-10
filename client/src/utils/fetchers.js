@@ -28,18 +28,14 @@ async function fetchJSON(url) {
  * @returns {Promise<T>}
  */
 async function sendFile(url, file) {
-  const result = await $.ajax({
-    async: false,
-    data: file,
-    dataType: 'json',
+  const result = await fetch(url, {
+    method: 'POST',
+    body: file,
     headers: {
       'Content-Type': 'application/octet-stream',
     },
-    method: 'POST',
-    processData: false,
-    url,
   });
-  return result;
+  return result.json();
 }
 
 /**
@@ -53,19 +49,15 @@ async function sendJSON(url, data) {
   const uint8Array = new TextEncoder().encode(jsonString);
   const compressed = gzip(uint8Array);
 
-  const result = await $.ajax({
-    async: false,
-    data: compressed,
-    dataType: 'json',
+  const result = await fetch(url, {
+    method: 'POST',
+    body: compressed,
     headers: {
       'Content-Encoding': 'gzip',
       'Content-Type': 'application/json',
     },
-    method: 'POST',
-    processData: false,
-    url,
   });
-  return result;
+  return result.json();
 }
 
 export { fetchBinary, fetchJSON, sendFile, sendJSON };
