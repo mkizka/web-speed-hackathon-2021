@@ -1,4 +1,6 @@
-import { zip, mean, chunk } from 'lodash-es';
+import zip from 'lodash-es/zip';
+import mean from 'lodash-es/mean';
+import chunk from 'lodash-es/chunk';
 import React from 'react';
 
 /**
