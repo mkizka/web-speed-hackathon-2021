@@ -22,6 +22,7 @@ const config = {
     },
     static: [PUBLIC_PATH, UPLOAD_PATH],
   },
+  devtool: process.env.NODE_ENV == 'development' ? 'inline-source-map' : false,
   entry: {
     main: [
       'core-js',
