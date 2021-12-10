@@ -25,8 +25,6 @@ const config = {
   devtool: process.env.NODE_ENV == 'development' ? 'inline-source-map' : false,
   entry: {
     main: [
-      'core-js',
-      'regenerator-runtime/runtime',
       path.resolve(SRC_PATH, './index.css'),
       path.resolve(SRC_PATH, './buildinfo.js'),
       path.resolve(SRC_PATH, './index.jsx'),
@@ -73,6 +71,7 @@ const config = {
       inject: false,
       template: path.resolve(SRC_PATH, './index.html'),
     }),
+    new (require('webpack-bundle-analyzer').BundleAnalyzerPlugin)(),
   ],
   resolve: {
     extensions: ['.js', '.jsx'],
