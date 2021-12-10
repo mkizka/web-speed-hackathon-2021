@@ -84,10 +84,7 @@ const config = {
     },
   },
   optimization: {
-    minimizer: [
-      //...
-      new CssMinimizerPlugin(),
-    ],
+    minimizer: [new CssMinimizerPlugin(), '...'],
   },
 };
 
