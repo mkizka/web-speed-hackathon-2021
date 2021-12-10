@@ -15,6 +15,7 @@ const PausableMovie = ({ src }) => {
 
   /** @type {React.RefCallback<HTMLVideoElement>} */
   const videoCallbackRef = React.useCallback((video) => {
+    if (video == null) return;
     videoRef.current?.pause();
 
     // Reactではmutedが効かないため
