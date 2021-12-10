@@ -11,7 +11,7 @@ function getImagePath(imageId) {
  * @returns {string}
  */
 function getMoviePath(movieId) {
-  return `/movies/${movieId}.gif.mp4`;
+  return `/movies/${movieId}.mp4`;
 }
 
 /**
