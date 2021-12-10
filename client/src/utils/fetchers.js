@@ -5,14 +5,9 @@ import { gzip } from 'pako';
  * @returns {Promise<ArrayBuffer>}
  */
 async function fetchBinary(url) {
-  const result = await $.ajax({
-    async: false,
-    dataType: 'binary',
-    method: 'GET',
-    responseType: 'arraybuffer',
-    url,
-  });
-  return result;
+  const result = await fetch(url, { method: 'GET' });
+  if (!result.ok) throw new Error();
+  return result.arrayBuffer();
 }
 
 /**
@@ -21,13 +16,9 @@ async function fetchBinary(url) {
  * @returns {Promise<T>}
  */
 async function fetchJSON(url) {
-  const result = await $.ajax({
-    async: false,
-    dataType: 'json',
-    method: 'GET',
-    url,
-  });
-  return result;
+  const result = await fetch(url, { method: 'GET' });
+  if (!result.ok) throw new Error();
+  return result.json();
 }
 
 /**
