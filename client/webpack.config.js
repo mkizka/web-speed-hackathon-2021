@@ -71,7 +71,7 @@ const config = {
       inject: false,
       template: path.resolve(SRC_PATH, './index.html'),
     }),
-    new (require('webpack-bundle-analyzer').BundleAnalyzerPlugin)(),
+    // new (require('webpack-bundle-analyzer').BundleAnalyzerPlugin)(),
   ],
   resolve: {
     extensions: ['.js', '.jsx'],
