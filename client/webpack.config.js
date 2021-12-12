@@ -54,7 +54,6 @@ const config = {
   },
   plugins: [
     new webpack.ProvidePlugin({
-      AudioContext: ['standardized-audio-context', 'AudioContext'],
       Buffer: ['buffer', 'Buffer'],
     }),
     new webpack.EnvironmentPlugin({
@@ -71,7 +70,7 @@ const config = {
       inject: false,
       template: path.resolve(SRC_PATH, './index.html'),
     }),
-    // new (require('webpack-bundle-analyzer').BundleAnalyzerPlugin)(),
+    new (require('webpack-bundle-analyzer').BundleAnalyzerPlugin)(),
   ],
   resolve: {
     extensions: ['.js', '.jsx'],
