@@ -16,12 +16,6 @@ import { SoundWaveSVG } from '../SoundWaveSVG';
  * @type {React.VFC<Props>}
  */
 const SoundPlayer = ({ sound }) => {
-  const { data, isLoading } = useFetch(getSoundPath(sound.id), fetchBinary);
-
-  const blobUrl = React.useMemo(() => {
-    return data !== null ? URL.createObjectURL(new Blob([data])) : null;
-  }, [data]);
-
   const [currentTimeRatio, setCurrentTimeRatio] = React.useState(0);
   /** @type {React.ReactEventHandler<HTMLAudioElement>} */
   const handleTimeUpdate = React.useCallback((ev) => {
@@ -43,13 +37,9 @@ const SoundPlayer = ({ sound }) => {
     });
   }, []);
 
-  if (isLoading || data === null || blobUrl === null) {
-    return null;
-  }
-
   return (
     <div className="flex items-center justify-center w-full h-full bg-gray-300">
-      <audio ref={audioRef} loop={true} onTimeUpdate={handleTimeUpdate} src={blobUrl} />
+      <audio ref={audioRef} loop={true} onTimeUpdate={handleTimeUpdate} src={getSoundPath(sound.id)} />
       <div className="p-2">
         <button
           className="flex items-center justify-center w-8 h-8 text-white text-sm bg-blue-600 rounded-full hover:opacity-75"
@@ -66,7 +56,7 @@ const SoundPlayer = ({ sound }) => {
           <AspectRatioBox aspectHeight={1} aspectWidth={10}>
             <div className="relative w-full h-full">
               <div className="absolute inset-0 w-full h-full">
-                <SoundWaveSVG soundData={data} />
+                <SoundWaveSVG sound={sound} />
               </div>
               <div
                 className="absolute inset-0 w-full h-full bg-gray-300 opacity-75"

@@ -31,6 +31,14 @@ const Sound = sequelize.define('Sound', {
     defaultValue: 'Unknown',
     type: DataTypes.STRING,
   },
+  peaks: {
+    allowNull: true,
+    type: DataTypes.STRING,
+  },
+  max: {
+    allowNull: true,
+    type: DataTypes.INTEGER,
+  },
 });
 
 export { Sound };
