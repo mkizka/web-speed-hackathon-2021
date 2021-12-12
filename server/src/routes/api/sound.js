@@ -36,7 +36,6 @@ router.post('/sounds', async (req, res) => {
   const filePath = path.resolve(UPLOAD_PATH, `./sounds/${soundId}.${EXTENSION}`);
   await fs.writeFile(filePath, converted);
 
-  console.info({ artist, id: soundId, title, max, peaks });
   return res.status(200).type('application/json').send({ artist, id: soundId, title, max, peaks });
 });
 
