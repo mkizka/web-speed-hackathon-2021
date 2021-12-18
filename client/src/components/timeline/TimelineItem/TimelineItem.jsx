@@ -1,5 +1,6 @@
 import moment from 'moment';
 import React from 'react';
+import LazyLoad from 'react-lazyload';
 import { Link, useNavigate } from 'react-router-dom';
 
 import { getProfileImagePath } from '../../../utils/get_path';
@@ -57,12 +58,14 @@ const TimelineItem = ({ post }) => {
             className="block w-12 h-12 bg-gray-300 border border-gray-300 rounded-full hover:opacity-75 overflow-hidden sm:w-16 sm:h-16"
             to={`/users/${post.user.username}`}
           >
-            <img
-              width="64"
-              height="64"
-              alt={post.user.profileImage.alt}
-              src={getProfileImagePath(post.user.profileImage.id)}
-            />
+            <LazyLoad>
+              <img
+                width="64"
+                height="64"
+                alt={post.user.profileImage.alt}
+                src={getProfileImagePath(post.user.profileImage.id)}
+              />
+            </LazyLoad>
           </Link>
         </div>
         <div className="flex-grow flex-shrink min-w-0">
