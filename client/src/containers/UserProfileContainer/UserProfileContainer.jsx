@@ -7,7 +7,8 @@ import { UserProfilePage } from '../../components/user_profile/UserProfilePage';
 import { useFetch } from '../../hooks/use_fetch';
 import { useInfiniteFetch } from '../../hooks/use_infinite_fetch';
 import { fetchJSON } from '../../utils/fetchers';
-import { NotFoundContainer } from '../NotFoundContainer';
+
+const NotFoundContainer = React.lazy(() => import('../NotFoundContainer'));
 
 /** @type {React.VFC} */
 const UserProfileContainer = () => {
