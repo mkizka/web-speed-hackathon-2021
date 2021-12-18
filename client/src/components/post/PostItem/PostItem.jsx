@@ -1,7 +1,7 @@
-import moment from 'moment';
 import React from 'react';
 import { Link } from 'react-router-dom';
 
+import { formatDateString } from '../../../utils/format_date_string';
 import { getProfileImagePath } from '../../../utils/get_path';
 import { ImageArea } from '../../post/ImageArea';
 import { MovieArea } from '../../post/MovieArea';
@@ -63,9 +63,7 @@ const PostItem = ({ post }) => {
           ) : null}
           <p className="mt-2 text-sm sm:mt-4">
             <Link className="text-gray-500 hover:underline" to={`/posts/${post.id}`}>
-              <time dateTime={moment(post.createdAt).toISOString()}>
-                {moment(post.createdAt).locale('ja').format('LL')}
-              </time>
+              <time dateTime={post.createdAt}>{formatDateString(post.createdAt)}</time>
             </Link>
           </p>
         </div>
