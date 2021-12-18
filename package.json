@@ -4,7 +4,9 @@
   "scripts": {
     "build": "yarn workspaces run build",
     "start": "yarn workspace @web-speed-hackathon-2021/server start",
-    "client": "yarn workspace @web-speed-hackathon-2021/client develop"
+    "dev": "run-p -l dev:server dev:client",
+    "dev:server": "yarn workspace @web-speed-hackathon-2021/server develop",
+    "dev:client": "yarn workspace @web-speed-hackathon-2021/client develop"
   },
   "workspaces": [
     "client",
@@ -12,5 +14,8 @@
   ],
   "engines": {
     "node": "16.x.x"
+  },
+  "devDependencies": {
+    "npm-run-all": "^4.1.5"
   }
 }

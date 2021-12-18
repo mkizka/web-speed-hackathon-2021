@@ -8,6 +8,7 @@
     "build": "echo noop",
     "prestart": "npm-run-all prestart:clean prestart:init",
     "start": "babel-node --experimental-wasm-threads src/index.js",
+    "develop": "BABEL_WATCH_NODE_OPTIONS=\"--experimental-wasm-threads\" yarn babel-watch src/index.js",
     "prestart:clean": "rimraf ../upload",
     "prestart:init": "mkdirp ../upload/images ../upload/movies ../upload/sounds"
   },
@@ -51,7 +52,8 @@
     "@types/serve-static": "1.13.10",
     "@types/sharp": "0.29.4",
     "@types/sqlite3": "3.1.7",
-    "@types/uuid": "8.3.3"
+    "@types/uuid": "8.3.3",
+    "babel-watch": "^7.7.0"
   },
   "engines": {
     "node": "16.x.x"
