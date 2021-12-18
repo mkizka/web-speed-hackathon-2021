@@ -21,7 +21,12 @@ const CommentItem = ({ comment }) => {
             to={`/users/${comment.user.username}`}
           >
             <LazyLoad>
-              <img alt={comment.user.profileImage.alt} src={getProfileImagePath(comment.user.profileImage.id)} />
+              <img
+                width="48"
+                height="48"
+                alt={comment.user.profileImage.alt}
+                src={getProfileImagePath(comment.user.profileImage.id)}
+              />
             </LazyLoad>
           </Link>
         </div>
