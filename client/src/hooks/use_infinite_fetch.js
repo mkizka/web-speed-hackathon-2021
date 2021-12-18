@@ -27,18 +27,13 @@ export function useInfiniteFetch(apiPath, fetcher) {
   });
 
   const fetchMore = React.useCallback(() => {
-    const { isLoading, offset } = internalRef.current;
-    if (isLoading) {
-      return;
-    }
-
     setResult((cur) => ({
       ...cur,
       isLoading: true,
     }));
     internalRef.current = {
       isLoading: true,
-      offset,
+      offset: internalRef.current.offset,
     };
 
     const promise = fetcher(apiPath);
@@ -46,12 +41,12 @@ export function useInfiniteFetch(apiPath, fetcher) {
     promise.then((allData) => {
       setResult((cur) => ({
         ...cur,
-        data: [...cur.data, ...allData.slice(offset, offset + LIMIT)],
+        data: [...cur.data, ...allData.slice(internalRef.current.offset, internalRef.current.offset + LIMIT)],
         isLoading: false,
       }));
       internalRef.current = {
         isLoading: false,
-        offset: offset + LIMIT,
+        offset: internalRef.current.offset + LIMIT,
       };
     });
 
@@ -63,7 +58,7 @@ export function useInfiniteFetch(apiPath, fetcher) {
       }));
       internalRef.current = {
         isLoading: false,
-        offset,
+        offset: internalRef.current.offset,
       };
     });
   }, [apiPath, fetcher]);
@@ -78,8 +73,6 @@ export function useInfiniteFetch(apiPath, fetcher) {
       isLoading: false,
       offset: 0,
     };
-
-    fetchMore();
   }, [fetchMore]);
 
   return {
